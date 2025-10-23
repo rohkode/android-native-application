@@ -1,65 +1,122 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp">
+    android:background="#F7F7F7">
 
-    <EditText
-        android:id="@+id/editTextName"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Name" />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp">
 
-    <EditText
-        android:id="@+id/editTextIdentity"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Identity" />
+        <!-- 🔹 Banner placeholder (for Native Display later) -->
+        <ImageView
+            android:id="@+id/bannerImage"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_launcher_background"
+            android:contentDescription="Banner"
+            android:layout_marginBottom="16dp"
+            android:background="#DDDDDD" />
 
-    <EditText
-        android:id="@+id/editTextEmail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Email"
-        android:inputType="textEmailAddress" />
+        <!-- 🔹 Profile Form -->
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
 
-    <EditText
-        android:id="@+id/editTextPhone"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Phone"
-        android:inputType="phone" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp"
+                android:background="@android:color/white"
+                android:elevation="3dp">
 
-    <EditText
-        android:id="@+id/editTextDOB"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Date of Birth" />
+                <EditText
+                    android:id="@+id/editTextName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Name" />
 
-    <EditText
-        android:id="@+id/editTextGender"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Gender" />
+                <EditText
+                    android:id="@+id/editTextIdentity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Identity" />
 
-    <Button
-        android:id="@+id/btnOnUserLogin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="OnUserLogin" />
+                <EditText
+                    android:id="@+id/editTextEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Email"
+                    android:inputType="textEmailAddress" />
 
-    <Button
-        android:id="@+id/btn_custom_event"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Track Custom Event" />
+                <EditText
+                    android:id="@+id/editTextPhone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Phone"
+                    android:inputType="phone" />
 
-    <Button
-        android:id="@+id/btn_event_with_props"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Track Event with Properties"
-        android:layout_marginTop="16dp" />
+                <EditText
+                    android:id="@+id/editTextDOB"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Date of Birth"
+                    android:focusable="false"
+                    android:clickable="true" />
 
-</LinearLayout>
+                <EditText
+                    android:id="@+id/editTextGender"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Gender" />
+
+                <Button
+                    android:id="@+id/btnOnUserLogin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="OnUserLogin"
+                    android:layout_marginTop="12dp"/>
+
+                <Button
+                    android:id="@+id/btn_custom_event"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Track Custom Event"
+                    android:layout_marginTop="12dp"/>
+
+                <Button
+                    android:id="@+id/btn_event_with_props"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Track Event with Properties"
+                    android:layout_marginTop="12dp"/>
+
+                <Button
+                    android:id="@+id/btn_charged_event"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Charged Event"
+                    android:layout_marginTop="16dp"/>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+    <!-- 🔹 Floating Action Button for Inbox -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/inboxIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="24dp"
+        android:contentDescription="Inbox"
+        app:srcCompat="@android:drawable/ic_dialog_email"
+        app:backgroundTint="@color/purple_500"
+        app:tint="@android:color/white" />
+
+</FrameLayout>
