@@ -11,7 +11,7 @@
         android:orientation="vertical"
         android:padding="16dp">
 
-        <!-- 🔹 Banner placeholder (for Native Display later) -->
+        <!-- Banner placeholder (for Native Display) -->
         <ImageView
             android:id="@+id/bannerImage"
             android:layout_width="match_parent"
@@ -22,7 +22,7 @@
             android:layout_marginBottom="16dp"
             android:background="#DDDDDD" />
 
-        <!-- 🔹 Profile Form -->
+        <!-- Profile Form -->
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -107,7 +107,7 @@
         </ScrollView>
     </LinearLayout>
 
-    <!-- 🔹 Floating Action Button for Inbox -->
+    <!-- Floating Action Button for Inbox -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/inboxIcon"
         android:layout_width="wrap_content"

@@ -23,8 +23,14 @@ class MainActivity : AppCompatActivity(), CTInboxListener, DisplayUnitListener {
     private var cleverTapDefaultInstance: CleverTapAPI? = null
     private var isInboxInitialized: Boolean = false
 
-    // 🔹 Counter for Charged Event
-    private var chargedIdCounter: Int = 1
+    // Charged Event
+    private fun nextChargeId(): Int {
+        val prefs = getSharedPreferences("clevertap_demo_prefs", MODE_PRIVATE)
+        val next = prefs.getInt("charged_id_counter", 0) + 1
+        prefs.edit().putInt("charged_id_counter", next).apply()
+        return next
+    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,7 +71,7 @@ class MainActivity : AppCompatActivity(), CTInboxListener, DisplayUnitListener {
         }
         cleverTapDefaultInstance?.setLocation(location)
 
-        // 🔹 Show default CleverTap GIF in banner
+        // Fallback banner for Native Display
         val bannerImage = findViewById<ImageView>(R.id.bannerImage)
         Glide.with(this)
             .asGif()
@@ -86,7 +92,7 @@ class MainActivity : AppCompatActivity(), CTInboxListener, DisplayUnitListener {
         val chargedEventBtn = findViewById<Button>(R.id.btn_charged_event)
         val inboxIcon = findViewById<ImageView>(R.id.inboxIcon)
 
-        // ✅ Date picker for DOB
+        // Date picker for DOB
         dobEditText.setOnClickListener {
             val calendar = Calendar.getInstance()
             val year = calendar.get(Calendar.YEAR)
@@ -109,7 +115,7 @@ class MainActivity : AppCompatActivity(), CTInboxListener, DisplayUnitListener {
         // Open Inbox
         inboxIcon.setOnClickListener { openInbox() }
 
-        // ✅ OnUserLogin
+        // OnUserLogin
         onUserLoginBtn.setOnClickListener {
             val name = nameEditText.text.toString()
             val identity = identityEditText.text.toString()
@@ -164,10 +170,10 @@ class MainActivity : AppCompatActivity(), CTInboxListener, DisplayUnitListener {
             Toast.makeText(this, "Event with Properties sent", Toast.LENGTH_SHORT).show()
         }
 
-        // ✅ Charged Event
+        // Charged Event
         chargedEventBtn.setOnClickListener {
             val chargeDetails = hashMapOf<String, Any>(
-                "Charged ID" to chargedIdCounter,
+                "Charged ID" to nextChargeId(),
                 "Amount" to 399.0,
                 "Payment Mode" to "Credit Card",
                 "Charged Date" to Date()
@@ -190,16 +196,15 @@ class MainActivity : AppCompatActivity(), CTInboxListener, DisplayUnitListener {
             items.add(item2)
 
             cleverTapDefaultInstance?.pushChargedEvent(chargeDetails, items)
-            Toast.makeText(this, "Charged Event Sent: ID $chargedIdCounter", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Charged Event Sent: ID ${nextChargeId()}", Toast.LENGTH_SHORT).show()
 
-            chargedIdCounter++
         }
 
         // Deep links
         handleDeepLink(intent)
     }
 
-    // ✅ Inbox listeners
+    // Inbox listeners
     override fun inboxDidInitialize() {
         runOnUiThread {
             isInboxInitialized = true
@@ -234,7 +239,7 @@ class MainActivity : AppCompatActivity(), CTInboxListener, DisplayUnitListener {
         cleverTapDefaultInstance?.showAppInbox(styleConfig)
     }
 
-    // ✅ Native Display listener
+    // Native Display listener
     override fun onDisplayUnitsLoaded(units: ArrayList<CleverTapDisplayUnit>?) {
         val bannerImage = findViewById<ImageView>(R.id.bannerImage)
 
