@@ -103,6 +103,14 @@
                     android:layout_height="wrap_content"
                     android:text="Charged Event"
                     android:layout_marginTop="16dp"/>
+
+                <Button
+                    android:id="@+id/btn_logout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Logout (Reset CleverTap)"
+                    android:layout_marginTop="16dp"/>
+
             </LinearLayout>
         </ScrollView>
     </LinearLayout>

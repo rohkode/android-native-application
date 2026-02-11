@@ -51,6 +51,9 @@
         <meta-data
             android:name="CLEVERTAP_TOKEN"
             android:value="05b-6bb"/>
+<!--        <meta-data-->
+<!--            android:name="CLEVERTAP_IDENTIFIER"-->
+<!--            android:value="Identity,Email,Phone" />-->
         <meta-data
             android:name="CLEVERTAP_USE_GOOGLE_AD_ID"
             android:value="0"/>
